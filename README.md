@@ -8,4 +8,4 @@ It is based on latest Ubuntu LTS.
 
 - Azure CLI
 - PowerShell Core 7
-- 
+- Python 3 with Virtual Environment module and Pip

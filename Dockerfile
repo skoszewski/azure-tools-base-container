@@ -51,6 +51,8 @@ RUN ARCH=$(dpkg --print-architecture | sed 's/aarch/arm/; s/amd64/x64/') && \
     ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 
 COPY entrypoint.sh /
+# Required to make the entrypoint script executable if building on Windows host
+RUN chmod +x /entrypoint.sh
 WORKDIR /root
 
 ENTRYPOINT ["/entrypoint.sh"]

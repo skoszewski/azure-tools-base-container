@@ -1,2 +1,3 @@
 # Ignore build environment files
 **/*.env
+**/*_env.ps1

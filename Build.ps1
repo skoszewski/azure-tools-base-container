@@ -27,8 +27,16 @@ function Import-EnvFile {
         if ($parts.Length -eq 2) {
             $key = $parts[0].Trim()
             $value = $parts[1].Trim()
+            
+            # Remove surrounding quotes if present (Docker-style env files)
+            if ($value -match '^".*"$') {
+                $value = $value.Trim('"')
+            } elseif ($value -match "^'.*'$") {
+                $value = $value.Trim("'")
+            }
+            
             [System.Environment]::SetEnvironmentVariable($key, $value)
-            Write-Verbose "Set environment variable: $key"
+            Write-Verbose "Set environment variable: $key = $value"
         }
         else {
             Write-Warning "Ignoring invalid line in env file: $_"
